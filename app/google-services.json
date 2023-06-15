@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "680800960968",
+    "project_id": "catalogo-distritodo",
+    "storage_bucket": "catalogo-distritodo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:680800960968:android:1f70373beb629d7e35c0fd",
+        "android_client_info": {
+          "package_name": "co.com.sergio.catalogodistritodo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "680800960968-9ia6sobt7nugto7rgmf4ia96p73cbb0j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.com.sergio.catalogodistritodo",
+            "certificate_hash": "f3695fea9e0e0240de578494010fc753ae6e6a39"
+          }
+        },
+        {
+          "client_id": "680800960968-7q81n373jc602c50q897d17ms7mrijv8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVjRh9pLn4uuO-YjmcdNZ1Lz9Ku8NqQxk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "680800960968-7q81n373jc602c50q897d17ms7mrijv8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

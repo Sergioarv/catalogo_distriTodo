@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#443D41">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+<!-- imagen de la empresa-->
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_marginTop="-100sp"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:src="@drawable/distri"/>
+
+<!--Texto de Catalogo-->
+        <TextView
+            android:id="@+id/app_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40sp"
+            android:gravity="center_horizontal"
+            android:text="@string/app_name"
+            android:textColor="#CCA657"
+            android:textSize="40sp" />
+
+<!--        Texto de desarrolladores-->
+        <TextView
+            android:id="@+id/developer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60sp"
+            android:gravity="center"
+            android:text="@string/developer"
+            android:textColor="#CCA657"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

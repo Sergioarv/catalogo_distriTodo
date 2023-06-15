@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">catalogo_distriTodo</string>
+    <string name="app_name">Catalogo DistriTodo Sevilla</string>
+    <string name="developer">Desarrollado por. Sergio Rodriguez y Carlos Vasquez</string>
+    <string name="title_activity_menu">Menu</string>
 </resources>
