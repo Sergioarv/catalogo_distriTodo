@@ -69,5 +69,6 @@ dependencies {
     androidTestImplementation platform('androidx.compose:compose-bom:2022.10.00')
     debugImplementation 'androidx.compose.ui:ui-tooling'
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
-
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'com.airbnb.android:lottie:3.0.1'
 }
