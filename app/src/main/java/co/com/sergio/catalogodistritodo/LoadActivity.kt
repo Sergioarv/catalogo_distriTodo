@@ -22,7 +22,7 @@ class LoadActivity : ComponentActivity() {
         val TIME: Long = 3000;
 
         Handler(Looper.getMainLooper()).postDelayed({
-            val mainIntent = Intent(this, MainAdminActivity::class.java)
+            val mainIntent = Intent(this, MainActivity::class.java)
             startActivity(mainIntent)
         }, TIME);
     }

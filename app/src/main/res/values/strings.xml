@@ -1,5 +1,26 @@
 <resources>
+    <!--    Nombre App y Desarrolladores -->
     <string name="app_name">Catalogo DistriTodo Sevilla</string>
-    <string name="developer">Desarrollado por. Sergio Rodriguez y Carlos Vasquez</string>
+    <string name="developer">Desarrollado por: Sergio Rodriguez y Carlos Vasquez</string>
+
+    <!--    Menu Administrador-->
     <string name="title_activity_menu">Menu</string>
+    <string name="home_admin">Inicio</string>
+    <string name="add_admin">Agregar</string>
+    <string name="edit_admin">Editar</string>
+    <string name="exit">Salir</string>
+
+    <!--    Menu Cliente-->
+    <string name="opciones_txt">Opciones</string>
+    <string name="home_cliente">Inicio</string>
+    <string name="more_option">Más Opciones</string>
+    <string name="about">Acerca de</string>
+
+    <!--    Abrir y cerrar menu-->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_main">MainActivity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

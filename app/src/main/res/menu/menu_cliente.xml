@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item
+        android:id="@+id/opcionesTxt"
+        android:title="@string/opciones_txt">
+        <menu>
+            <item
+                android:id="@+id/homeCliente"
+                android:icon="@drawable/home_ico"
+                android:title="@string/home_cliente" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/moreOption"
+        android:title="@string/more_option">
+        <menu>
+            <item
+                android:id="@+id/about"
+                android:title="@string/about"
+                android:icon="@drawable/about_ico"/>
+        </menu>
+    </item>
+
+</menu>
