@@ -19,7 +19,7 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_a"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorPrimaryDark"
             app:titleTextColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
@@ -41,7 +41,7 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/header"
         app:menu="@menu/menu_admin"
-        android:background="#fff"
+        android:background="@drawable/background_menu"
         app:itemTextColor="#000"
         >
     </com.google.android.material.navigation.NavigationView>
