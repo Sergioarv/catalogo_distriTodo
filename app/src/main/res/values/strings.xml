@@ -6,9 +6,10 @@
     <!--    Menu Administrador-->
     <string name="title_activity_menu">Menu</string>
     <string name="home_admin">Inicio</string>
-    <string name="add_admin">Agregar</string>
-    <string name="edit_admin">Editar</string>
-    <string name="exit">Salir</string>
+    <string name="register_admin">Registrar Administrador</string>
+    <string name="add_admin">Agregar Item</string>
+    <string name="edit_admin">Editar Item</string>
+    <string name="exit">Cerrar Sesion</string>
 
     <!--    Menu Cliente-->
     <string name="opciones_txt">Opciones</string>
@@ -20,7 +21,13 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_activity_main">MainActivity</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Registro de Administradores -->
+    <string name="regster_txt">Registro de Administradores</string>
+    <string name="email">Correo</string>
+    <string name="password">Contraseña</string>
+    <string name="names">Nombres</string>
+    <string name="last_name">Apellidos</string>
+    <string name="register_btn">Registrar</string>
 
 </resources>

@@ -73,6 +73,9 @@ dependencies {
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.appcompat:appcompat-resources:1.6.1'
-    implementation 'com.airbnb.android:lottie:3.0.1'
-    implementation 'com.google.android.material:material:1.7.0'
+    implementation 'com.airbnb.android:lottie:3.0.1' //Libreria lottie para loadin animado
+    implementation 'com.google.android.material:material:1.7.0' //Liberia material de google
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.6.1' //Libreria de firebase para base de datos
+    implementation platform('com.google.firebase:firebase-bom:32.1.1') //Libreria de firebase para autenticacion
+    implementation 'com.google.firebase:firebase-auth-ktx'
 }

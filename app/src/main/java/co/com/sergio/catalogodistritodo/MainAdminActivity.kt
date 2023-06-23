@@ -9,6 +9,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import co.com.sergio.catalogodistritodo.fragmentAdmin.AddAdminFragment
 import co.com.sergio.catalogodistritodo.fragmentAdmin.HomeAdminFragment
+import co.com.sergio.catalogodistritodo.fragmentAdmin.RegisterAdminFragment
 import com.google.android.material.navigation.NavigationView
 
 class MainAdminActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -45,6 +46,9 @@ class MainAdminActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         when (item.itemId){
             R.id.homeAdmin -> {
                 supportFragmentManager.beginTransaction().replace(R.id.fragment_content_a, HomeAdminFragment()).commit()
+            }
+            R.id.registerAdmin -> {
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_content_a, RegisterAdminFragment()).commit()
             }
             R.id.addAdmin -> {
                 supportFragmentManager.beginTransaction().replace(R.id.fragment_content_a, AddAdminFragment()).commit()
