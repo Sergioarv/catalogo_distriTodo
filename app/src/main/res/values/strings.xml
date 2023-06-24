@@ -9,13 +9,17 @@
     <string name="register_admin">Registrar Administrador</string>
     <string name="add_admin">Agregar Item</string>
     <string name="edit_admin">Editar Item</string>
-    <string name="exit">Cerrar Sesion</string>
 
     <!--    Menu Cliente-->
     <string name="opciones_txt">Opciones</string>
     <string name="home_cliente">Inicio</string>
     <string name="more_option">Más Opciones</string>
     <string name="about">Acerca de</string>
+
+<!--    Inicio de sesion -->
+    <string name="login">Inicio Sesion</string>
+    <string name="exit">Cerrar Sesion</string>
+    <string name="login_txt">Ingresar</string>
 
     <!--    Abrir y cerrar menu-->
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -32,5 +36,6 @@
 
 
     <string name="loading">Cargando...</string>
+    <string name="title_activity_login">LoginActivity</string>
 
 </resources>

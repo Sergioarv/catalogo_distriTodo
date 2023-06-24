@@ -20,6 +20,11 @@
         android:title="@string/more_option">
         <menu>
             <item
+                android:id="@+id/login"
+                android:title="@string/login"
+                android:icon="@drawable/login_ico"/>
+
+            <item
                 android:id="@+id/about"
                 android:title="@string/about"
                 android:icon="@drawable/about_ico"/>
