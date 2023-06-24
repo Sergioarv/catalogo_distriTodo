@@ -30,4 +30,7 @@
     <string name="last_name">Apellidos</string>
     <string name="register_btn">Registrar</string>
 
+
+    <string name="loading">Cargando...</string>
+
 </resources>
