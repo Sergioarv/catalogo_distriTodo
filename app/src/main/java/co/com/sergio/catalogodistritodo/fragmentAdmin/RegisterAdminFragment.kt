@@ -11,7 +11,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import co.com.sergio.catalogodistritodo.MainAdminActivity
 import co.com.sergio.catalogodistritodo.R
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
@@ -45,16 +44,23 @@ class RegisterAdminFragment : Fragment() {
             //Comvertimos a string los editText email y password
             var email = emailAdmin.text.toString();
             var password = passwordAdmin.text.toString();
+            var name = nameAdmin.text.toString();
+            var lastName = lastNameAdmin.text.toString();
 
-            //Validacion de correo electronico
-            if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                emailAdmin.error = "Correo invalido";
-                emailAdmin.isFocusable = true;
-            } else if (password.length < 6) {
-                passwordAdmin.error = "La contraseña debe ser mayor a 6";
-                passwordAdmin.isFocusable = true;
-            } else {
-                RegistorAdministradores(email, password);
+            if(email == "" || password == "" || name == "" || lastName == ""){
+                Toast.makeText(this.activity, "Por favor llene todos los campos", Toast.LENGTH_SHORT).show();
+            }else {
+
+                //Validacion de correo electronico
+                if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                    emailAdmin.error = "Correo invalido";
+                    emailAdmin.isFocusable = true;
+                } else if (password.length < 6) {
+                    passwordAdmin.error = "La contraseña debe ser mayor a 6";
+                    passwordAdmin.isFocusable = true;
+                } else {
+                    RegistorAdministradores(email, password);
+                }
             }
         });
 
@@ -73,14 +79,14 @@ class RegisterAdminFragment : Fragment() {
                     var email: String = emailAdmin.text.toString();
                     var password: String = passwordAdmin.text.toString();
                     var name: String = nameAdmin.text.toString();
-                    var last_name: String = lastNameAdmin.text.toString();
+                    var lastName: String = lastNameAdmin.text.toString();
 
                     var administradores = HashMap<String, String>();
                     administradores["UID"] = UID;
                     administradores["email"] = email;
                     administradores["password"] = password;
                     administradores["name"] = name;
-                    administradores["lastname"] = last_name;
+                    administradores["lastname"] = lastName;
                     administradores["imagen"] = "";
 
                     //Iniciar database
