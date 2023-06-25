@@ -16,7 +16,7 @@
     <string name="more_option">Más Opciones</string>
     <string name="about">Acerca de</string>
 
-<!--    Inicio de sesion -->
+    <!--    Inicio de sesion -->
     <string name="login">Inicio Sesion</string>
     <string name="exit">Cerrar Sesion</string>
     <string name="login_txt">Ingresar</string>
@@ -34,10 +34,21 @@
     <string name="last_name">Apellidos</string>
     <string name="register_btn">Registrar</string>
 
+    <!--    Fragmento Home-->
+    <string name="category">Elige una categoria</string>
+    <string name="category_liquors">Licores</string>
+    <string name="category_drinks">Bebidas</string>
+    <string name="category_candy">Dulceria</string>
+    <string name="category_others">Otros</string>
 
+    <!--Otros-->
     <string name="loading">Cargando...</string>
     <string name="success">Exito</string>
     <string name="failed">Advertencia</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_liquors_admin">LiquorsAdminActivity</string>
+    <string name="title_activity_drinks_admin">DrinksAdminActivity</string>
+    <string name="title_activity_candys_admin">CandysAdminActivity</string>
+    <string name="title_activity_others_admin">OthersAdminActivity</string>
 
 </resources>
