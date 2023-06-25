@@ -16,6 +16,10 @@
     <string name="more_option">Más Opciones</string>
     <string name="about">Acerca de</string>
 
+<!--    Menu Parte Superior Derecha-->
+    <string name="add_item">Agregar Item</string>
+    <string name="view_item">Ver Item</string>
+
     <!--    Inicio de sesion -->
     <string name="login">Inicio Sesion</string>
     <string name="exit">Cerrar Sesion</string>
