@@ -3,6 +3,7 @@ package co.com.sergio.catalogodistritodo
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -11,10 +12,14 @@ import androidx.drawerlayout.widget.DrawerLayout
 import co.com.sergio.catalogodistritodo.fragmentCliente.AboutClienteFragment
 import co.com.sergio.catalogodistritodo.fragmentCliente.HomeClienteFragment
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     lateinit var drawerLayout: DrawerLayout
+    var auth = Firebase.auth
+    var user = auth.currentUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,25 +34,37 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navigationView.setNavigationItemSelectedListener(this)
         navigationView.itemIconTintList = null
 
-        var toggle: ActionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        var toggle: ActionBarDrawerToggle = ActionBarDrawerToggle(
+            this,
+            drawerLayout,
+            toolbar,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
+        )
 
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
-        if(savedInstanceState == null){
-            supportFragmentManager.beginTransaction().replace(R.id.fragment_content_c, HomeClienteFragment()).commit()
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_content_c, HomeClienteFragment()).commit()
             navigationView.setCheckedItem(R.id.homeCliente)
         }
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when (item.itemId){
+        when (item.itemId) {
             R.id.homeCliente -> {
-                supportFragmentManager.beginTransaction().replace(R.id.fragment_content_c, HomeClienteFragment()).commit()
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_content_c, HomeClienteFragment()).commit()
             }
+
             R.id.about -> {
-                supportFragmentManager.beginTransaction().replace(R.id.fragment_content_c, AboutClienteFragment()).commit()
+                supportFragmentManager.beginTransaction()
+                    .addToBackStack(this.localClassName)
+                    .replace(R.id.fragment_content_c, AboutClienteFragment()).commit()
             }
+
             R.id.login -> {
                 startActivity(Intent(this, LoginActivity::class.java))
             }
@@ -55,5 +72,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         drawerLayout.closeDrawer(GravityCompat.START)
         return true;
+    }
+
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount == 0) {
+            finish()
+        } else {
+            supportFragmentManager.popBackStack()
+        }
     }
 }

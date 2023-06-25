@@ -24,6 +24,7 @@ class LoadActivity : ComponentActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             val mainIntent = Intent(this, MainAdminActivity::class.java)
             startActivity(mainIntent)
+            finish()
         }, TIME);
     }
 }

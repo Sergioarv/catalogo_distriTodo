@@ -11,6 +11,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import co.com.sergio.catalogodistritodo.MainAdminActivity
 import co.com.sergio.catalogodistritodo.R
+import co.com.sergio.catalogodistritodo.utils.ProgressDialog
+import co.com.sergio.catalogodistritodo.utils.ProgressDialogF
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
@@ -25,6 +27,8 @@ class RegisterAdminFragment : Fragment() {
     lateinit var registerBtnAdmin: Button;
 
     var auth = Firebase.auth
+
+    lateinit var progressDialog: ProgressDialogF
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -70,9 +74,13 @@ class RegisterAdminFragment : Fragment() {
     //Metodo para regitrar administradores
     private fun RegistorAdministradores(email: String, password: String) {
 
+        progressDialog = ProgressDialogF(this@RegisterAdminFragment)
+        progressDialog.startProgressBar()
+
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful){
+
                     var user : FirebaseUser = auth.currentUser!!;
 
                     var UID : String = user.uid
@@ -96,13 +104,16 @@ class RegisterAdminFragment : Fragment() {
 
                     val mainIntent = Intent(this.activity, MainAdminActivity::class.java)
                     startActivity(mainIntent)
+                    activity?.finish()
+                    progressDialog.isDismiss()
                     Toast.makeText(this.activity, "Registro exitoso", Toast.LENGTH_SHORT).show()
-                    this.activity?.finish()
                 }else{
+                    progressDialog.isDismiss()
                     Toast.makeText(this.activity, "Ha ocurrido un error", Toast.LENGTH_SHORT).show()
                 }
             }
             .addOnFailureListener { task ->
+                progressDialog.isDismiss()
                 Toast.makeText(this.activity, task.message.toString(), Toast.LENGTH_SHORT)
             }
     }

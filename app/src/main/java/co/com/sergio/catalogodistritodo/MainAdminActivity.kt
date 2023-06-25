@@ -2,6 +2,7 @@ package co.com.sergio.catalogodistritodo
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -64,11 +65,13 @@ class MainAdminActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
             R.id.registerAdmin -> {
                 supportFragmentManager.beginTransaction()
+                    .addToBackStack(this.localClassName)
                     .replace(R.id.fragment_content_a, RegisterAdminFragment()).commit()
             }
 
             R.id.addAdmin -> {
                 supportFragmentManager.beginTransaction()
+                    .addToBackStack(this.localClassName)
                     .replace(R.id.fragment_content_a, AddAdminFragment()).commit()
             }
 
@@ -87,17 +90,26 @@ class MainAdminActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     }
 
     private fun comprobandoInicioSesion() {
-        if(user != null) {
+        if (user != null) {
             Toast.makeText(this, "Se ha iniciado sesión", Toast.LENGTH_SHORT).show()
-        }else{
+        } else {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
     }
 
-    private fun cerrarSesion(){
+    private fun cerrarSesion() {
         auth.signOut()
         startActivity(Intent(this, MainActivity::class.java))
+        finish()
         Toast.makeText(this, "Cerraste sesión exitosamente", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount == 0) {
+            finish()
+        } else {
+            supportFragmentManager.popBackStack()
+        }
     }
 }
