@@ -1,11 +1,13 @@
 package co.com.sergio.catalogodistritodo
 
+import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AlertDialog
@@ -81,39 +83,37 @@ class LoginActivity : AppCompatActivity() {
                     val mainIntent = Intent(this, MainAdminActivity::class.java)
                     startActivity(mainIntent)
                     finish()
-                    Toast.makeText(this, "Bienvenida(o)" + user.email, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Bienvenida(o): " + user.email, Toast.LENGTH_SHORT).show()
                     progressDialog.isDismiss()
                 } else {
                     UserInvalid()
+                    progressDialog.isDismiss()
                 }
             }
-            .addOnFailureListener { task ->
-                Toast.makeText(this, task.message.toString(), Toast.LENGTH_SHORT).show()
+            .addOnFailureListener { _->
+                progressDialog.isDismiss()
+                UserInvalid()
             }
     }
 
+    @SuppressLint("MissingInflatedId")
     private fun UserInvalid() {
 
-//        val alertDialog: AlertDialog? = this?.let {
-//            val builder = AlertDialog.Builder(it)
-//            builder.apply {
-//                setPositiveButton("Ok",
-//                    DialogInterface.OnClickListener { dialog, id ->
-//                        // User clicked OK button
-//                    })
-//                setNegativeButton("Cancel",
-//                    DialogInterface.OnClickListener { dialog, id ->
-//                        // User cancelled the dialog
-//                    })
-//            }
-//            // Set other dialog properties
-//
-//            // Create the AlertDialog
-//            builder.create()
-//        }
-//        alertDialog?.show()
+        var builderDialog = AlertDialog.Builder(this)
+        val dialogView = layoutInflater.inflate(R.layout.failed_dialog, null)
+        var dialogBtn = dialogView.findViewById<View>(R.id.failed_btn)
+        var dialogTxt = dialogView.findViewById<TextView>(R.id.failed_txt)
+        var dialogTittle = dialogView.findViewById<TextView>(R.id.failed_tittle)
+        dialogTittle.text = "!Ha Ocurrido un Error¡"
+        dialogTxt.text = "Verifique si el correo o la contraseña son correctos"
+        builderDialog.setView(dialogView)
+        var alertDialog = builderDialog.create()
+        alertDialog.setCancelable(false)
+        alertDialog.show()
 
-//        progressDialog.isDismiss()
+        dialogBtn.setOnClickListener ( View.OnClickListener {
+            alertDialog.dismiss()
+        })
     }
 
 //    override fun onBackPressed() {

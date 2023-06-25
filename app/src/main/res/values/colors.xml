@@ -11,8 +11,8 @@
     <color name="colorPrimary">#FFF</color>
     <color name="colorPrimaryDark">#89A7C2</color>
     <color name="colorAccent">#595458</color>
-<!--    <color name="colorPrimary">#F2D49B</color>-->
-<!--    <color name="colorPrimaryDark">#D99F59</color>-->
-<!--    <color name="colorAccent">#595458</color>-->
+
+    <color name="colorSuccessDialog">#306B34</color>
+    <color name="colorFailedDialog">#FF6663</color>
 
 </resources>

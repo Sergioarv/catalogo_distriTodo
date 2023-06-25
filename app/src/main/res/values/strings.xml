@@ -36,6 +36,8 @@
 
 
     <string name="loading">Cargando...</string>
+    <string name="success">Exito</string>
+    <string name="failed">Advertencia</string>
     <string name="title_activity_login">LoginActivity</string>
 
 </resources>
