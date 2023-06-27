@@ -26,10 +26,21 @@
     <string name="price_liquors">Escriba el precio del item</string>
     <string name="description_liquors">Escriba descripcion del item</string>
 
+    <!--    Add Bebidas-->
+    <string name="name_img_drinks">Nombre de imagen</string>
+    <string name="name_text_drinks">Escriba el nombre del item</string>
+    <string name="price_drinks">Escriba el precio del item</string>
+    <string name="description_drinks">Escriba descripcion del item</string>
+
     <!--    Item licores-->
     <string name="name_img_liquors_item">--</string>
     <string name="price_liquors_item">--</string>
     <string name="description_liquors_item">--</string>
+
+    <!--    Item bebidas-->
+    <string name="name_img_drinks_item">--</string>
+    <string name="price_drinks_item">--</string>
+    <string name="description_drinks_item">--</string>
 
     <!--    Inicio de sesion -->
     <string name="login">Inicio Sesion</string>

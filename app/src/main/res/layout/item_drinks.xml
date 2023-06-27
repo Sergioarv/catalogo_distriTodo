@@ -17,16 +17,16 @@
         android:orientation="vertical"
         android:gravity="center">
 
-<!--        imagen-->
+        <!--        imagen-->
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imageLiquors"
+            android:id="@+id/imageDrinks"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="center" />
 
         <TextView
-            android:id="@+id/nameImgLiquorsItem"
-            android:text="@string/name_img_liquors_item"
+            android:id="@+id/nameImgDrinksItem"
+            android:text="@string/name_img_drinks_item"
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:textColor="@color/black"
@@ -35,8 +35,8 @@
             android:gravity="center"/>
 
         <TextView
-            android:id="@+id/priceLiquorsItem"
-            android:text="@string/price_liquors_item"
+            android:id="@+id/priceDrinksItem"
+            android:text="@string/price_drinks_item"
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:textColor="@color/black"
@@ -45,8 +45,8 @@
             android:gravity="center"/>
 
         <TextView
-            android:id="@+id/descriptionLiquorsItem"
-            android:text="@string/description_liquors_item"
+            android:id="@+id/descriptionDrinksItem"
+            android:text="@string/description_drinks_item"
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:textColor="@color/black"

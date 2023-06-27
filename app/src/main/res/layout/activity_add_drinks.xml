@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".categoryAdmin.liquorsAdmin.AddLiquorsActivity">
+    tools:context=".categoryAdmin.drinksAdmin.AddDrinksActivity">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -23,14 +23,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/name_text_liquors" />
+                android:text="@string/name_text_drinks" />
 
             <EditText
-                android:id="@+id/nameTextLiquors"
+                android:id="@+id/nameTextDrinks"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:hint="@string/name_text_liquors"
-                android:inputType="textCapWords|textAutoCorrect" />
+                android:hint="@string/name_text_drinks"
+                android:inputType="textCapWords|textAutoCorrect"
+                />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -45,14 +46,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/price_liquors" />
+                android:text="@string/price_drinks" />
 
             <EditText
-                android:id="@+id/priceLiquors"
+                android:id="@+id/priceDrinks"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:hint="@string/price_liquors"
-                android:inputType="textCapWords|textAutoCorrect" />
+                android:hint="@string/price_drinks"
+                android:inputType="textCapWords|textAutoCorrect"
+                />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -67,20 +69,21 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/description_liquors" />
+                android:text="@string/description_drinks" />
 
 
             <EditText
-                android:id="@+id/descriptionLiquors"
+                android:id="@+id/descriptionDrinks"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:hint="@string/description_liquors"
-                android:inputType="textCapWords|textAutoCorrect" />
+                android:hint="@string/description_drinks"
+                android:inputType="textCapWords|textAutoCorrect"
+                />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imageLiquors"
+            android:id="@+id/imageDrinks"
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:layout_gravity="center"
@@ -88,7 +91,7 @@
             android:src="@drawable/imagen_ico" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/addLiquorsBtn"
+            android:id="@+id/addDrinksBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"

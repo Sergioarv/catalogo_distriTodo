@@ -1,4 +1,4 @@
-package co.com.sergio.catalogodistritodo.categoryAdmin.liquorsAdmin;
+package co.com.sergio.catalogodistritodo.categoryAdmin.drinksAdmin;
 
 import android.content.Context;
 import android.view.View;
@@ -13,11 +13,13 @@ import com.squareup.picasso.Picasso;
 
 import co.com.sergio.catalogodistritodo.R;
 
-public class ViewHolderLiquors extends RecyclerView.ViewHolder {
+;
+
+public class ViewHolderDrinks extends RecyclerView.ViewHolder {
 
     View mView;
 
-    private ViewHolderLiquors.ClickListener mClickListener;
+    private ViewHolderDrinks.ClickListener mClickListener;
 
     /**
      * Interfaz listener para detectar click
@@ -31,14 +33,14 @@ public class ViewHolderLiquors extends RecyclerView.ViewHolder {
     /**
      * setea el tipo de click normal o largo
      */
-    public void setOnClickListener(ViewHolderLiquors.ClickListener clickListener) {
+    public void setOnClickListener(ViewHolderDrinks.ClickListener clickListener) {
         mClickListener = clickListener;
     }
 
     /**
      * Metodo constructor para los click
      */
-    public ViewHolderLiquors(@NonNull View itemView) {
+    public ViewHolderDrinks(@NonNull View itemView) {
         super(itemView);
         mView = itemView;
         /**     Click normal*/
@@ -62,26 +64,26 @@ public class ViewHolderLiquors extends RecyclerView.ViewHolder {
      *  Setear imformacion leida desdes db
      */
 
-    public void setterLiquors(Context context, String image, String name, String price, String description){
-        ImageView imageLiquor;
-        TextView nameImgLiquorsItem;
-        TextView priceLiquorsItem;
-        TextView descriptionLiquorsItem;
+    public void setterDrinks(Context context, String image, String name, String price, String description){
+        ImageView imageDrink;
+        TextView nameImgDrinksItem;
+        TextView priceDrinksItem;
+        TextView descriptionDrinksItem;
 
         /** Conexion con el item */
-        imageLiquor = mView.findViewById(R.id.imageLiquors);
-        nameImgLiquorsItem = mView.findViewById(R.id.nameImgLiquorsItem);
-        priceLiquorsItem = mView.findViewById(R.id.priceLiquorsItem);
-        descriptionLiquorsItem = mView.findViewById(R.id.descriptionLiquorsItem);
+        imageDrink = mView.findViewById(R.id.imageDrinks);
+        nameImgDrinksItem = mView.findViewById(R.id.nameImgDrinksItem);
+        priceDrinksItem = mView.findViewById(R.id.priceDrinksItem);
+        descriptionDrinksItem = mView.findViewById(R.id.descriptionDrinksItem);
 
-        nameImgLiquorsItem.setText(name);
-        priceLiquorsItem.setText(price);
-        descriptionLiquorsItem.setText(description);
+        nameImgDrinksItem.setText(name);
+        priceDrinksItem.setText(price);
+        descriptionDrinksItem.setText(description);
 
         /** Controlar posibles errores */
         try{
             /** Si la imagen fue traida correctamente */
-            Picasso.get().load(image).into(imageLiquor);
+            Picasso.get().load(image).into(imageDrink);
         }catch (Exception e){
             /** Si la imagen no fue traida correctamente */
             Toast.makeText(context, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
