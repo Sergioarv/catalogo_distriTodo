@@ -1,4 +1,4 @@
-package co.com.sergio.catalogodistritodo.categoryAdmin
+package co.com.sergio.catalogodistritodo.categoryAdmin.candysAdmin
 
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle

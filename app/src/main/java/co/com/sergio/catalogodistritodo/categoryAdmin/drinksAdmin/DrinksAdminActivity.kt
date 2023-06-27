@@ -1,4 +1,4 @@
-package co.com.sergio.catalogodistritodo.categoryAdmin
+package co.com.sergio.catalogodistritodo.categoryAdmin.drinksAdmin
 
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -10,13 +10,13 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import co.com.sergio.catalogodistritodo.R
 
-class OthersAdminActivity : AppCompatActivity() {
+class DrinksAdminActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_others_admin)
+        setContentView(R.layout.activity_drinks_admin)
 
         var actionBar: ActionBar? = supportActionBar
-        actionBar?.title = "Otros"
+        actionBar?.title = "Bebidas"
         actionBar?.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.colorPrimaryDark)));
         actionBar?.setDisplayHomeAsUpEnabled(true)
     }
@@ -26,6 +26,7 @@ class OthersAdminActivity : AppCompatActivity() {
         var menuInflater: MenuInflater = menuInflater
         menuInflater.inflate(R.menu.menu_agregar_item, menu)
         menuInflater.inflate(R.menu.menu_vista_item, menu)
+
         return super.onCreateOptionsMenu(menu)
     }
 

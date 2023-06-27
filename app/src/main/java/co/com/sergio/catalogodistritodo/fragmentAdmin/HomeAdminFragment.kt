@@ -8,10 +8,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import co.com.sergio.catalogodistritodo.R
-import co.com.sergio.catalogodistritodo.categoryAdmin.CandysAdminActivity
-import co.com.sergio.catalogodistritodo.categoryAdmin.DrinksAdminActivity
-import co.com.sergio.catalogodistritodo.categoryAdmin.LiquorsAdminActivity
-import co.com.sergio.catalogodistritodo.categoryAdmin.OthersAdminActivity
+import co.com.sergio.catalogodistritodo.categoryAdmin.candysAdmin.CandysAdminActivity
+import co.com.sergio.catalogodistritodo.categoryAdmin.drinksAdmin.DrinksAdminActivity
+import co.com.sergio.catalogodistritodo.categoryAdmin.liquorsAdmin.LiquorsAdminActivity
+import co.com.sergio.catalogodistritodo.categoryAdmin.othersAdmin.OthersAdminActivity
 
 class HomeAdminFragment : Fragment() {
 

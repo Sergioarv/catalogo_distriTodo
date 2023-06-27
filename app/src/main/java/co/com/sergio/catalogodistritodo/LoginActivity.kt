@@ -2,6 +2,7 @@ package co.com.sergio.catalogodistritodo
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -33,6 +34,7 @@ class LoginActivity : AppCompatActivity() {
         var actionBar: ActionBar? = supportActionBar
 
         actionBar?.title = "Inicio Sesion"
+        actionBar?.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.colorPrimaryDark)));
         actionBar?.setDisplayHomeAsUpEnabled(true)
         actionBar?.setDisplayShowHomeEnabled(true)
 
@@ -111,6 +113,11 @@ class LoginActivity : AppCompatActivity() {
         dialogBtn.setOnClickListener ( View.OnClickListener {
             alertDialog.dismiss()
         })
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
     }
 
 //    override fun onBackPressed() {

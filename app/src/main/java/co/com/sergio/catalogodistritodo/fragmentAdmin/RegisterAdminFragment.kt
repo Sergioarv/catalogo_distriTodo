@@ -11,7 +11,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import co.com.sergio.catalogodistritodo.MainAdminActivity
 import co.com.sergio.catalogodistritodo.R
-import co.com.sergio.catalogodistritodo.utils.ProgressDialog
 import co.com.sergio.catalogodistritodo.utils.ProgressDialogF
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
@@ -45,7 +44,7 @@ class RegisterAdminFragment : Fragment() {
 
         // Evento click en registrar
         registerBtnAdmin.setOnClickListener(View.OnClickListener {
-            //Comvertimos a string los editText email y password
+            //Convertimos a string los editText email y password
             var email = emailAdmin.text.toString();
             var password = passwordAdmin.text.toString();
             var name = nameAdmin.text.toString();
@@ -99,7 +98,7 @@ class RegisterAdminFragment : Fragment() {
 
                     //Iniciar database
                     val database = Firebase.database;
-                    val reference = database.getReference("db_catalogo_distri_admin")
+                    val reference = database.getReference("ADMINISTRADORES")
                     reference.child(UID).setValue(administradores);
 
                     val mainIntent = Intent(this.activity, MainAdminActivity::class.java)
@@ -114,7 +113,7 @@ class RegisterAdminFragment : Fragment() {
             }
             .addOnFailureListener { task ->
                 progressDialog.isDismiss()
-                Toast.makeText(this.activity, task.message.toString(), Toast.LENGTH_SHORT)
+                Toast.makeText(this.activity, task.message.toString(), Toast.LENGTH_SHORT).show()
             }
     }
 }

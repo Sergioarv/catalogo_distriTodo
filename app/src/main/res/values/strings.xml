@@ -16,9 +16,20 @@
     <string name="more_option">Más Opciones</string>
     <string name="about">Acerca de</string>
 
-<!--    Menu Parte Superior Derecha-->
+    <!--    Menu Parte Superior Derecha-->
     <string name="add_item">Agregar Item</string>
     <string name="view_item">Ver Item</string>
+
+    <!--    Add Licores-->
+    <string name="name_img_liquors">Nombre de imagen</string>
+    <string name="name_text_liquors">Escriba el nombre del item</string>
+    <string name="price_liquors">Escriba el precio del item</string>
+    <string name="description_liquors">Escriba descripcion del item</string>
+
+    <!--    Item licores-->
+    <string name="name_img_liquors_item">--</string>
+    <string name="price_liquors_item">--</string>
+    <string name="description_liquors_item">--</string>
 
     <!--    Inicio de sesion -->
     <string name="login">Inicio Sesion</string>

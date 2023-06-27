@@ -1,5 +1,6 @@
-package co.com.sergio.catalogodistritodo.categoryAdmin
+package co.com.sergio.catalogodistritodo.categoryAdmin.liquorsAdmin
 
+import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Menu
@@ -10,39 +11,35 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import co.com.sergio.catalogodistritodo.R
 
-class DrinksAdminActivity : AppCompatActivity() {
+class LiquorsAdminActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_drinks_admin)
+        setContentView(R.layout.activity_liquors_admin)
 
         var actionBar: ActionBar? = supportActionBar
-        actionBar?.title = "Bebidas"
+        actionBar?.title = "Licores"
         actionBar?.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.colorPrimaryDark)));
         actionBar?.setDisplayHomeAsUpEnabled(true)
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         var menuInflater: MenuInflater = menuInflater
         menuInflater.inflate(R.menu.menu_agregar_item, menu)
         menuInflater.inflate(R.menu.menu_vista_item, menu)
-
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.addItemBtn -> {
-                Toast.makeText(this, "Agregar item", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, AddLiquorsActivity::class.java))
             }
             R.id.viewItemBtn -> {
                 Toast.makeText(this, "Listar item", Toast.LENGTH_SHORT).show()
             }
         }
-
         return super.onOptionsItemSelected(item)
     }
-
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()

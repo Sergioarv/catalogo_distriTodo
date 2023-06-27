@@ -1,4 +1,4 @@
-package co.com.sergio.catalogodistritodo.categoryAdmin
+package co.com.sergio.catalogodistritodo.categoryAdmin.othersAdmin
 
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -10,16 +10,17 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import co.com.sergio.catalogodistritodo.R
 
-class LiquorsAdminActivity : AppCompatActivity() {
+class OthersAdminActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_liquors_admin)
+        setContentView(R.layout.activity_others_admin)
 
         var actionBar: ActionBar? = supportActionBar
-        actionBar?.title = "Licores"
+        actionBar?.title = "Otros"
         actionBar?.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.colorPrimaryDark)));
         actionBar?.setDisplayHomeAsUpEnabled(true)
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         var menuInflater: MenuInflater = menuInflater
@@ -37,8 +38,10 @@ class LiquorsAdminActivity : AppCompatActivity() {
                 Toast.makeText(this, "Listar item", Toast.LENGTH_SHORT).show()
             }
         }
+
         return super.onOptionsItemSelected(item)
     }
+
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()

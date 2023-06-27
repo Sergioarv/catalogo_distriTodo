@@ -13,22 +13,25 @@
         android:theme="@style/Theme.Catalogo_distriTodo"
         tools:targetApi="31">
         <activity
-            android:name=".categoryAdmin.OthersAdminActivity"
+            android:name=".categoryAdmin.liquorsAdmin.AddLiquorsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".categoryAdmin.othersAdmin.OthersAdminActivity"
             android:exported="false"
             android:label="@string/title_activity_others_admin"
             android:theme="@style/Theme.Catalogo_distriTodo" />
         <activity
-            android:name=".categoryAdmin.CandysAdminActivity"
+            android:name=".categoryAdmin.candysAdmin.CandysAdminActivity"
             android:exported="false"
             android:label="@string/title_activity_candys_admin"
             android:theme="@style/Theme.Catalogo_distriTodo" />
         <activity
-            android:name=".categoryAdmin.DrinksAdminActivity"
+            android:name=".categoryAdmin.drinksAdmin.DrinksAdminActivity"
             android:exported="false"
             android:label="@string/title_activity_drinks_admin"
             android:theme="@style/Theme.Catalogo_distriTodo" />
         <activity
-            android:name=".categoryAdmin.LiquorsAdminActivity"
+            android:name=".categoryAdmin.liquorsAdmin.LiquorsAdminActivity"
             android:exported="false"
             android:label="@string/title_activity_liquors_admin"
             android:theme="@style/Theme.Catalogo_distriTodo" />
