@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Catalogo_distriTodo"
         tools:targetApi="31">
         <activity
+            android:name=".categoryAdmin.othersAdmin.AddOthersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".categoryAdmin.candysAdmin.AddCandysActivity"
+            android:exported="false" />
+        <activity
             android:name=".categoryAdmin.drinksAdmin.AddDrinksActivity"
             android:exported="false" />
         <activity

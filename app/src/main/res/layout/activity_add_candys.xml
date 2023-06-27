@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".categoryAdmin.candysAdmin.AddCandysActivity">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <!--        Input nombre del item-->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/name_text_candys" />
+
+            <EditText
+                android:id="@+id/nameTextCandys"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="@string/name_text_candys"
+                android:inputType="textCapWords|textAutoCorrect" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <!--        Input precio del item-->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/price_candys" />
+
+            <EditText
+                android:id="@+id/priceCandys"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="@string/price_candys"
+                android:inputType="textCapWords|textAutoCorrect" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <!--        Descripcion del Item-->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/description_candys" />
+
+
+            <EditText
+                android:id="@+id/descriptionCandys"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="@string/description_candys"
+                android:inputType="textCapWords|textAutoCorrect" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageCandys"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/imagen_ico" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/addCandysBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/btn_customizable"
+            android:text="@string/add_item"
+            android:textColor="@color/black" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</RelativeLayout>

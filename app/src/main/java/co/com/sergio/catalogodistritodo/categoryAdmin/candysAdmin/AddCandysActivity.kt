@@ -1,4 +1,4 @@
-package co.com.sergio.catalogodistritodo.categoryAdmin.liquorsAdmin
+package co.com.sergio.catalogodistritodo.categoryAdmin.candysAdmin
 
 import android.content.ContentResolver
 import android.content.Intent
@@ -23,16 +23,16 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
 
-class AddLiquorsActivity : AppCompatActivity() {
+class AddCandysActivity : AppCompatActivity() {
 
-    lateinit var nameTextLiquors: EditText
-    lateinit var priceLiquors: EditText
-    lateinit var descriptionLiquors: EditText
-    lateinit var imageLiquors: ImageView
-    lateinit var addLiquorsBtn: Button
+    lateinit var nameTextCandys: EditText
+    lateinit var priceCandys: EditText
+    lateinit var descriptionCandys: EditText
+    lateinit var imageCandys: ImageView
+    lateinit var addCandysBtn: Button
 
-    var sourceStorage: String = "licores_almacenados/"
-    var sourceDataBase: String = "LICORES"
+    var sourceStorage: String = "dulces_almacenados/"
+    var sourceDataBase: String = "DULCES"
     lateinit var sourceUri: Uri
 
     var searchImage = false;
@@ -49,20 +49,20 @@ class AddLiquorsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_liquors)
+        setContentView(R.layout.activity_add_candys)
 
         var actionBar = supportActionBar;
-        actionBar?.title = "Agregar Licor"
+        actionBar?.title = "Agregar Dulce"
         actionBar?.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.colorPrimaryDark)));
         actionBar?.setDisplayHomeAsUpEnabled(true)
 
-        nameTextLiquors = findViewById(R.id.nameTextLiquors)
-        priceLiquors = findViewById(R.id.priceLiquors)
-        descriptionLiquors = findViewById(R.id.descriptionLiquors)
-        imageLiquors = findViewById(R.id.imageLiquors)
-        addLiquorsBtn = findViewById(R.id.addLiquorsBtn)
+        nameTextCandys = findViewById(R.id.nameTextCandys)
+        priceCandys = findViewById(R.id.priceCandys)
+        descriptionCandys = findViewById(R.id.descriptionCandys)
+        imageCandys = findViewById(R.id.imageCandys)
+        addCandysBtn = findViewById(R.id.addCandysBtn)
 
-        imageLiquors.setOnClickListener(View.OnClickListener {
+        imageCandys.setOnClickListener(View.OnClickListener {
 
             var intent: Intent = Intent()
             intent.setType("image/*")
@@ -75,15 +75,15 @@ class AddLiquorsActivity : AppCompatActivity() {
             searchImage = true
         })
 
-        addLiquorsBtn.setOnClickListener(View.OnClickListener {
+        addCandysBtn.setOnClickListener(View.OnClickListener {
             progressDialog = ProgressDialog(this)
             progressDialog.startProgressBar()
 
-            var nameLiquors = nameTextLiquors.text.toString()
-            var priceLiquors = priceLiquors.text.toString()
-            var descriptionLiquor = descriptionLiquors.text.toString()
+            var nameCandys = nameTextCandys.text.toString()
+            var priceCandys = priceCandys.text.toString()
+            var descriptionCandy = descriptionCandys.text.toString()
 
-            if (nameLiquors == "" || priceLiquors == "" || descriptionLiquor == "" || !searchImage) {
+            if (nameCandys == "" || priceCandys == "" || descriptionCandy == "" || !searchImage) {
                 progressDialog.isDismiss()
                 Toast.makeText(this, "Por favor llene todos los campos", Toast.LENGTH_SHORT).show();
             } else {
@@ -112,20 +112,20 @@ class AddLiquorsActivity : AppCompatActivity() {
 
                     var donwloadUri: Uri = uriTask.result
 
-                    var mNombre = nameTextLiquors.text.toString()
-                    var mPrice = priceLiquors.text.toString()
-                    var mDescripcion = descriptionLiquors.text.toString()
+                    var mNombre = nameTextCandys.text.toString()
+                    var mPrice = priceCandys.text.toString()
+                    var mDescripcion = descriptionCandys.text.toString()
 
-                    var liquorsObj: Liquor =
-                        Liquor(donwloadUri.toString(), mNombre, mPrice, mDescripcion)
+                    var candysObj: Candy =
+                        Candy(donwloadUri.toString(), mNombre, mPrice, mDescripcion)
                     var ID_IMAGEN: String = database.push().key.toString()
 
-                    database.child(ID_IMAGEN).setValue(liquorsObj)
+                    database.child(ID_IMAGEN).setValue(candysObj)
 
                     progressDialog.isDismiss()
                     Toast.makeText(this, "Subido exitosamente", Toast.LENGTH_SHORT).show()
 
-                    startActivity(Intent(this, LiquorsAdminActivity::class.java))
+                    startActivity(Intent(this, CandysAdminActivity::class.java))
                     finish()
                 }
                 .addOnFailureListener { e ->
@@ -160,15 +160,10 @@ class AddLiquorsActivity : AppCompatActivity() {
 
             try {
                 var bitMap: Bitmap = MediaStore.Images.Media.getBitmap(contentResolver, sourceUri)
-                imageLiquors.setImageBitmap(bitMap)
+                imageCandys.setImageBitmap(bitMap)
             } catch (e: Exception) {
                 Toast.makeText(this, "" + e.message, Toast.LENGTH_SHORT).show()
             }
         }
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return super.onSupportNavigateUp()
     }
 }

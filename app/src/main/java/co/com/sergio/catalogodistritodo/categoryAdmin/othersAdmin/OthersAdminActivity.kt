@@ -1,5 +1,6 @@
 package co.com.sergio.catalogodistritodo.categoryAdmin.othersAdmin
 
+import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Menu
@@ -9,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import co.com.sergio.catalogodistritodo.R
+import co.com.sergio.catalogodistritodo.categoryAdmin.candysAdmin.AddCandysActivity
 
 class OthersAdminActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +34,7 @@ class OthersAdminActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.addItemBtn -> {
-                Toast.makeText(this, "Agregar item", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, AddOthersActivity::class.java))
             }
             R.id.viewItemBtn -> {
                 Toast.makeText(this, "Listar item", Toast.LENGTH_SHORT).show()

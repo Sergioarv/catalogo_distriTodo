@@ -32,6 +32,18 @@
     <string name="price_drinks">Escriba el precio del item</string>
     <string name="description_drinks">Escriba descripcion del item</string>
 
+    <!--    Add Dulces-->
+    <string name="name_img_candys">Nombre de imagen</string>
+    <string name="name_text_candys">Escriba el nombre del item</string>
+    <string name="price_candys">Escriba el precio del item</string>
+    <string name="description_candys">Escriba descripcion del item</string>
+
+    <!--    Add Otros-->
+    <string name="name_img_others">Nombre de imagen</string>
+    <string name="name_text_others">Escriba el nombre del item</string>
+    <string name="price_others">Escriba el precio del item</string>
+    <string name="description_others">Escriba descripcion del item</string>
+
     <!--    Item licores-->
     <string name="name_img_liquors_item">--</string>
     <string name="price_liquors_item">--</string>
@@ -41,6 +53,16 @@
     <string name="name_img_drinks_item">--</string>
     <string name="price_drinks_item">--</string>
     <string name="description_drinks_item">--</string>
+
+    <!--    Item dulces-->
+    <string name="name_img_candys_item">--</string>
+    <string name="price_candys_item">--</string>
+    <string name="description_candys_item">--</string>
+
+    <!--    Item otros-->
+    <string name="name_img_others_item">--</string>
+    <string name="price_others_item">--</string>
+    <string name="description_others_item">--</string>
 
     <!--    Inicio de sesion -->
     <string name="login">Inicio Sesion</string>

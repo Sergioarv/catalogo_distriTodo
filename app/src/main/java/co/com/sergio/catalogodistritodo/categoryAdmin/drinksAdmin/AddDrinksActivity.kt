@@ -52,7 +52,7 @@ class AddDrinksActivity : AppCompatActivity() {
         setContentView(R.layout.activity_add_drinks)
 
         var actionBar = supportActionBar;
-        actionBar?.title = "Agregar Item"
+        actionBar?.title = "Agregar Bebida"
         actionBar?.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.colorPrimaryDark)));
         actionBar?.setDisplayHomeAsUpEnabled(true)
 
