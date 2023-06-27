@@ -8,6 +8,9 @@ public class Drink {
     private String description;
 
     /** Constructor */
+
+    public Drink(){}
+
     public Drink(String image, String name, String price, String description) {
         this.image = image;
         this.name = name;

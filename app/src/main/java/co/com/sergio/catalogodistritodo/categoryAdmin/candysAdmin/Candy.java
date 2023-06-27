@@ -7,7 +7,11 @@ public class Candy {
     private String price;
     private String description;
 
+
     /** Constructor */
+    public Candy() {
+    }
+
     public Candy(String image, String name, String price, String description) {
         this.image = image;
         this.name = name;

@@ -8,6 +8,9 @@ public class Other {
     private String description;
 
     /** Constructor */
+
+    public Other(){}
+
     public Other(String image, String name, String price, String description) {
         this.image = image;
         this.name = name;
