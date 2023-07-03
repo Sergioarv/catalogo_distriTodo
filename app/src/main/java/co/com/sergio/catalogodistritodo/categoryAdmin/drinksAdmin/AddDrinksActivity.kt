@@ -32,7 +32,7 @@ class AddDrinksActivity : AppCompatActivity() {
     lateinit var addDrinksBtn: Button
 
     var sourceStorage: String = "bebidas_almacenados/"
-    var sourceDataBase: String = "DEBIDAS"
+    var sourceDataBase: String = "BEBIDAS"
     lateinit var sourceUri: Uri
 
     var searchImage = false;
@@ -71,7 +71,6 @@ class AddDrinksActivity : AppCompatActivity() {
                 Intent.createChooser(intent, "Seleccionar imagen"),
                 CODIGO_DE_SOLICITUD_IMAGEN
             )
-            searchImage = true
         })
 
         addDrinksBtn.setOnClickListener(View.OnClickListener {
@@ -87,7 +86,6 @@ class AddDrinksActivity : AppCompatActivity() {
                 Toast.makeText(this, "Por favor llene todos los campos", Toast.LENGTH_SHORT).show();
             } else {
                 subirImagen()
-                searchImage = false
             }
         })
     }
@@ -123,6 +121,7 @@ class AddDrinksActivity : AppCompatActivity() {
 
                     progressDialog.isDismiss()
                     Toast.makeText(this, "Subido exitosamente", Toast.LENGTH_SHORT).show()
+                    searchImage = false
 
                     startActivity(Intent(this, DrinksAdminActivity::class.java))
                     finish()
@@ -160,6 +159,7 @@ class AddDrinksActivity : AppCompatActivity() {
             try {
                 var bitMap: Bitmap = MediaStore.Images.Media.getBitmap(contentResolver, sourceUri)
                 imageDrinks.setImageBitmap(bitMap)
+                searchImage = true
             } catch (e: Exception) {
                 Toast.makeText(this, "" + e.message, Toast.LENGTH_SHORT).show()
             }

@@ -14,5 +14,6 @@
 
     <color name="colorSuccessDialog">#306B34</color>
     <color name="colorFailedDialog">#FF6663</color>
+    <color name="colorAlertDialog">#ec7c26</color>
 
 </resources>

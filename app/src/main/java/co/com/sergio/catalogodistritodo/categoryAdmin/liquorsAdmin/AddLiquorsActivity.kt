@@ -71,8 +71,6 @@ class AddLiquorsActivity : AppCompatActivity() {
                 Intent.createChooser(intent, "Seleccionar imagen"),
                 CODIGO_DE_SOLICITUD_IMAGEN
             )
-
-            searchImage = true
         })
 
         addLiquorsBtn.setOnClickListener(View.OnClickListener {
@@ -88,7 +86,6 @@ class AddLiquorsActivity : AppCompatActivity() {
                 Toast.makeText(this, "Por favor llene todos los campos", Toast.LENGTH_SHORT).show();
             } else {
                 subirImagen()
-                searchImage = false
             }
         })
     }
@@ -124,6 +121,7 @@ class AddLiquorsActivity : AppCompatActivity() {
 
                     progressDialog.isDismiss()
                     Toast.makeText(this, "Subido exitosamente", Toast.LENGTH_SHORT).show()
+                    searchImage = false
 
                     startActivity(Intent(this, LiquorsAdminActivity::class.java))
                     finish()
@@ -161,6 +159,7 @@ class AddLiquorsActivity : AppCompatActivity() {
             try {
                 var bitMap: Bitmap = MediaStore.Images.Media.getBitmap(contentResolver, sourceUri)
                 imageLiquors.setImageBitmap(bitMap)
+                searchImage = true
             } catch (e: Exception) {
                 Toast.makeText(this, "" + e.message, Toast.LENGTH_SHORT).show()
             }

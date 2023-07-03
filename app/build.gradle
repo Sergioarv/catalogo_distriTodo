@@ -91,7 +91,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth-ktx' //Libreria para autenticacion
     implementation 'com.google.firebase:firebase-database-ktx' //Libreria para autenticacion
     implementation 'com.google.firebase:firebase-storage-ktx' //Libreria del Storage de Firebase
-    implementation 'com.firebaseui:firebase-ui-database:8.0.2'
+    implementation 'com.firebaseui:firebase-ui-database:8.0.2' //Libreria ui
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'androidx.recyclerview:recyclerview:1.3.0'
     implementation 'androidx.cardview:cardview:1.0.0'
