@@ -129,7 +129,6 @@ class LiquorsAdminActivity : AppCompatActivity() {
                             }
 
                             builderDialog.create().show()
-
                         }
                     })
                     return viewHolderLiquors
@@ -141,7 +140,7 @@ class LiquorsAdminActivity : AppCompatActivity() {
         recyclerViewLiquor.adapter = firebaseRecyclerAdapter
     }
 
-    protected fun DeletedImageLiquors(currentName: String, currentImage: String) {
+    private fun DeletedImageLiquors(currentName: String, currentImage: String) {
 
         var builderDialog = AlertDialog.Builder(this)
         val dialogView = layoutInflater.inflate(R.layout.alert_dialog, null)

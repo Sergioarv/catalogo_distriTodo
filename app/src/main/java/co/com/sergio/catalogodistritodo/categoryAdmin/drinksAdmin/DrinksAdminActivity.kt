@@ -9,18 +9,28 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import co.com.sergio.catalogodistritodo.R
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.OnSuccessListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.Query
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
 
 class DrinksAdminActivity : AppCompatActivity() {
 
@@ -74,7 +84,7 @@ class DrinksAdminActivity : AppCompatActivity() {
                     viewType: Int
                 ): ViewHolderDrinks {
                     val itemView: View = LayoutInflater.from(parent.context)
-                        .inflate(co.com.sergio.catalogodistritodo.R.layout.item_drinks, parent, false)
+                        .inflate(R.layout.item_drinks, parent, false)
                     val viewHolderDrinks = ViewHolderDrinks(itemView)
                     viewHolderDrinks.setOnClickListener(object : ViewHolderDrinks.ClickListener {
                         override fun onItemClick(view: View, position: Int) {
@@ -82,7 +92,28 @@ class DrinksAdminActivity : AppCompatActivity() {
                         }
 
                         override fun onItemLongClick(view: View, position: Int) {
-                            Toast.makeText(this@DrinksAdminActivity, "Long Click", Toast.LENGTH_SHORT).show()
+                            var name = getItem(position).name
+                            var imagen = getItem(position).image
+
+                            var builderDialog = AlertDialog.Builder(this@DrinksAdminActivity)
+                            var opc: Array<String> = arrayOf("Actualizar", "Eliminar")
+                            builderDialog.setItems(opc) { _, pos ->
+                                when (pos) {
+                                    0 -> {
+                                        Toast.makeText(
+                                            this@DrinksAdminActivity,
+                                            "Actualizar",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
+
+                                    1 -> {
+                                        DeletedImageDrinks(name, imagen)
+                                    }
+                                }
+                            }
+
+                            builderDialog.create().show()
                         }
                     })
                     return viewHolderDrinks
@@ -92,6 +123,83 @@ class DrinksAdminActivity : AppCompatActivity() {
         recyclerViewDrink.layoutManager = GridLayoutManager(this@DrinksAdminActivity, 2)
         firebaseRecyclerAdapter.startListening()
         recyclerViewDrink.adapter = firebaseRecyclerAdapter
+    }
+
+    private fun DeletedImageDrinks(currentName: String, currentImage: String) {
+
+        var builderDialog = AlertDialog.Builder(this)
+        val dialogView = layoutInflater.inflate(R.layout.alert_dialog, null)
+        var dialogOkBtn = dialogView.findViewById<View>(R.id.alert_ok_btn)
+        var dialogNotBtn = dialogView.findViewById<View>(R.id.alert_not_btn)
+        var dialogTxt = dialogView.findViewById<TextView>(R.id.alert_txt)
+        var dialogTittle = dialogView.findViewById<TextView>(R.id.alert_tittle)
+        dialogTittle.text = "!Eliminar¡"
+        dialogTxt.text = "¿Desea eliminar la imagen?"
+        builderDialog.setView(dialogView)
+        var alertDialog = builderDialog.create()
+        alertDialog.setCancelable(false)
+        alertDialog.show()
+
+        dialogOkBtn.setOnClickListener(View.OnClickListener {
+
+            var query: Query = mReference.orderByChild("name").equalTo(currentName)
+            query.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (ds in snapshot.children) {
+                        var drinksAxu: Drink? = ds.getValue(Drink::class.java)
+                        if(drinksAxu?.image.equals(currentImage)) {
+                            ds.ref.removeValue()
+                        }
+                    }
+                    Toast.makeText(
+                        this@DrinksAdminActivity,
+                        "La imagen ha sido eliminada",
+                        Toast.LENGTH_SHORT
+                    ).show();
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(
+                        this@DrinksAdminActivity,
+                        "" + error.getMessage(),
+                        Toast.LENGTH_SHORT
+                    ).show();
+                }
+            })
+
+            var imagenSelect: StorageReference = Firebase.storage.getReferenceFromUrl(currentImage)
+            imagenSelect.delete().addOnSuccessListener(object : OnSuccessListener<Void> {
+                override fun onSuccess(aVoid: Void?) {
+                    Toast.makeText(
+                        this@DrinksAdminActivity,
+                        "La imagen ha sido eliminada",
+                        Toast.LENGTH_SHORT
+                    ).show();
+                }
+            }).addOnFailureListener(object : OnFailureListener {
+                override fun onFailure(e: Exception) {
+                    Toast.makeText(
+                        this@DrinksAdminActivity,
+                        "" + e.message,
+                        Toast.LENGTH_SHORT
+                    ).show();
+                }
+            })
+
+            alertDialog.dismiss()
+        })
+
+        dialogNotBtn.setOnClickListener(View.OnClickListener {
+
+            Toast.makeText(
+                this@DrinksAdminActivity,
+                "Cancelado por administrador",
+                Toast.LENGTH_SHORT
+            ).show();
+
+            alertDialog.dismiss()
+        })
+
     }
 
     override fun onStart() {
