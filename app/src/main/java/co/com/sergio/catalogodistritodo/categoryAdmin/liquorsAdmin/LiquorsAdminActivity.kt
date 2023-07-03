@@ -108,6 +108,8 @@ class LiquorsAdminActivity : AppCompatActivity() {
                         override fun onItemLongClick(view: View, position: Int) {
 
                             var name = getItem(position).name
+                            var price = getItem(position).price
+                            var description = getItem(position).description
                             var imagen = getItem(position).image
 
                             var builderDialog = AlertDialog.Builder(this@LiquorsAdminActivity)
@@ -115,11 +117,14 @@ class LiquorsAdminActivity : AppCompatActivity() {
                             builderDialog.setItems(opc) { _, pos ->
                                 when (pos) {
                                     0 -> {
-                                        Toast.makeText(
-                                            this@LiquorsAdminActivity,
-                                            "Actualizar",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
+                                        var intent: Intent = Intent(this@LiquorsAdminActivity, AddLiquorsActivity::class.java)
+                                        intent.putExtra("currentName", name)
+                                        intent.putExtra("currentPrice", price)
+                                        intent.putExtra("currentDescription", description)
+                                        intent.putExtra("currentImage", imagen)
+
+                                        startActivity(intent)
+                                        finish()
                                     }
 
                                     1 -> {
