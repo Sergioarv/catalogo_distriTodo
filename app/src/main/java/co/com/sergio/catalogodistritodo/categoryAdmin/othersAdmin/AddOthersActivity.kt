@@ -14,14 +14,24 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.drawable.toBitmap
 import co.com.sergio.catalogodistritodo.R
 import co.com.sergio.catalogodistritodo.utils.ProgressDialog
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.gms.tasks.Task
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.UploadTask
 import com.google.firebase.storage.ktx.storage
+import com.squareup.picasso.Picasso
+import java.io.ByteArrayOutputStream
 
 class AddOthersActivity : AppCompatActivity() {
 
@@ -38,6 +48,13 @@ class AddOthersActivity : AppCompatActivity() {
     var searchImage = false;
 
     lateinit var progressDialog: ProgressDialog
+
+    lateinit var rName:String
+    lateinit var rPrice:String
+    lateinit var rDescription:String
+    lateinit var rImage:String
+
+    var currentImage = ""
 
     var storageRef: FirebaseStorage = Firebase.storage;
     var databaseRef: FirebaseDatabase = Firebase.database;
@@ -62,6 +79,28 @@ class AddOthersActivity : AppCompatActivity() {
         imageOthers = findViewById(R.id.imageOthers)
         addOthersBtn = findViewById(R.id.addOthersBtn)
 
+        var intent: Bundle? = getIntent().extras
+        if(intent != null){
+
+            rName = intent.getString("currentName").toString()
+            rPrice = intent.getString("currentPrice").toString()
+            rDescription = intent.getString("currentDescription").toString()
+            rImage = intent.getString("currentImage").toString()
+            currentImage = rImage
+
+            nameTextOthers.setText(rName)
+            priceOthers.setText(rPrice)
+            descriptionOthers.setText(rDescription)
+            Picasso.get().load(rImage).into(imageOthers)
+
+            actionBar?.title = "Actualizar Licor"
+            var update = "Actualizar"
+
+            addOthersBtn.setText(update)
+            searchImage = true
+
+        }
+
         imageOthers.setOnClickListener(View.OnClickListener {
 
             var intent: Intent = Intent()
@@ -85,7 +124,104 @@ class AddOthersActivity : AppCompatActivity() {
                 progressDialog.isDismiss()
                 Toast.makeText(this, "Por favor llene todos los campos", Toast.LENGTH_SHORT).show();
             } else {
-                subirImagen()
+                if(addOthersBtn.text.equals("Actualizar")){
+                    removeOldData()
+                }else {
+                    subirImagen()
+                }
+            }
+        })
+    }
+
+    private fun removeOldData() {
+
+        progressDialog = ProgressDialog(this)
+        progressDialog.startProgressBar()
+
+        var imagenSelect: StorageReference = Firebase.storage.getReferenceFromUrl(rImage)
+        imagenSelect.delete().addOnSuccessListener(object : OnSuccessListener<Void> {
+            override fun onSuccess(aVoid: Void?) {
+                Toast.makeText(
+                    this@AddOthersActivity,
+                    "La imagen anterior ha sido eliminada",
+                    Toast.LENGTH_SHORT
+                ).show();
+
+                subirNuevaImagen()
+            }
+        }).addOnFailureListener(object : OnFailureListener {
+            override fun onFailure(e: java.lang.Exception) {
+                Toast.makeText(
+                    this@AddOthersActivity,
+                    "1" + e.message,
+                    Toast.LENGTH_SHORT
+                ).show();
+                progressDialog.isDismiss()
+            }
+        })
+    }
+
+    private fun subirNuevaImagen() {
+
+        var newImage: String = System.currentTimeMillis().toString() + ".png"
+        var mStorageReference = storage.child(sourceStorage + newImage)
+        val bitmap = imageOthers.getDrawable().toBitmap()
+        var byteArrayOutputStream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
+        var data = byteArrayOutputStream.toByteArray()
+        var uploadTask: UploadTask = mStorageReference.putBytes(data)
+        uploadTask.addOnSuccessListener {taskSnapshot ->
+            Toast.makeText(this, "Nueva imagen cargada", Toast.LENGTH_SHORT).show()
+            var uriTask = taskSnapshot.storage.downloadUrl
+            while (!uriTask.isSuccessful){}
+            var downloadUri = uriTask.result
+
+            updateImageDatabase(downloadUri.toString())
+        }.addOnFailureListener {e ->
+            Toast.makeText(this, "2"+e.message, Toast.LENGTH_SHORT).show()
+            progressDialog.isDismiss()
+        }
+    }
+
+    private fun updateImageDatabase(
+        imageUpdate: String
+    ) {
+
+        val nameUpdate = nameTextOthers.text.toString()
+        var priceUpdate = priceOthers.text.toString()
+        var descriptionUpdate = descriptionOthers.text.toString()
+
+        var query = database.orderByChild("name").equalTo(rName)
+        query.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (ds in snapshot.children) {
+                    var otherAxu: Other? = ds.getValue(Other::class.java)
+                    if(otherAxu?.image.equals(currentImage)) {
+                        ds.ref.child("name").setValue(nameUpdate)
+                        ds.ref.child("price").setValue(priceUpdate)
+                        ds.ref.child("description").setValue(descriptionUpdate)
+                        ds.ref.child("image").setValue(imageUpdate)
+                    }
+                }
+                Toast.makeText(
+                    this@AddOthersActivity,
+                    "Actualizado correctamente",
+                    Toast.LENGTH_SHORT
+                ).show();
+
+                progressDialog.isDismiss()
+
+                startActivity(Intent(this@AddOthersActivity, OthersAdminActivity::class.java))
+                finish()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(
+                    this@AddOthersActivity,
+                    "3" + error.getMessage(),
+                    Toast.LENGTH_SHORT
+                ).show();
+                progressDialog.isDismiss()
             }
         })
     }

@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import co.com.sergio.catalogodistritodo.R
+import co.com.sergio.catalogodistritodo.categoryAdmin.liquorsAdmin.AddLiquorsActivity
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.android.gms.tasks.OnFailureListener
@@ -95,6 +96,8 @@ class CandysAdminActivity : AppCompatActivity() {
 
                         override fun onItemLongClick(view: View, position: Int) {
                             var name = getItem(position).name
+                            var price = getItem(position).price
+                            var description = getItem(position).description
                             var imagen = getItem(position).image
 
                             var builderDialog = AlertDialog.Builder(this@CandysAdminActivity)
@@ -102,11 +105,14 @@ class CandysAdminActivity : AppCompatActivity() {
                             builderDialog.setItems(opc) { _, pos ->
                                 when (pos) {
                                     0 -> {
-                                        Toast.makeText(
-                                            this@CandysAdminActivity,
-                                            "Actualizar",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
+                                        var intent: Intent = Intent(this@CandysAdminActivity, AddCandysActivity::class.java)
+                                        intent.putExtra("currentName", name)
+                                        intent.putExtra("currentPrice", price)
+                                        intent.putExtra("currentDescription", description)
+                                        intent.putExtra("currentImage", imagen)
+
+                                        startActivity(intent)
+                                        finish()
                                     }
 
                                     1 -> {
