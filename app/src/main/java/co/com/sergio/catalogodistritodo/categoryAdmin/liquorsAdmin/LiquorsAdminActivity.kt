@@ -1,7 +1,9 @@
 package co.com.sergio.catalogodistritodo.categoryAdmin.liquorsAdmin
 
+import android.app.Dialog
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +12,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
@@ -47,6 +50,9 @@ class LiquorsAdminActivity : AppCompatActivity() {
     lateinit var firebaseRecyclerAdapter: FirebaseRecyclerAdapter<Liquor, ViewHolderLiquors>;
     lateinit var options: FirebaseRecyclerOptions<Liquor>
 
+    lateinit var dialogSort: Dialog
+    lateinit var sharedPreferences: SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_liquors_admin)
@@ -61,6 +67,8 @@ class LiquorsAdminActivity : AppCompatActivity() {
 
         mFirebaseDatabase = Firebase.database
         mReference = mFirebaseDatabase.getReference("LICORES")
+
+        dialogSort = Dialog(this@LiquorsAdminActivity)
 
         ListImageLiquors();
     }
@@ -117,7 +125,10 @@ class LiquorsAdminActivity : AppCompatActivity() {
                             builderDialog.setItems(opc) { _, pos ->
                                 when (pos) {
                                     0 -> {
-                                        var intent: Intent = Intent(this@LiquorsAdminActivity, AddLiquorsActivity::class.java)
+                                        var intent: Intent = Intent(
+                                            this@LiquorsAdminActivity,
+                                            AddLiquorsActivity::class.java
+                                        )
                                         intent.putExtra("currentName", name)
                                         intent.putExtra("currentPrice", price)
                                         intent.putExtra("currentDescription", description)
@@ -140,9 +151,18 @@ class LiquorsAdminActivity : AppCompatActivity() {
                 }
             }
 
-        recyclerViewLiquor.layoutManager = GridLayoutManager(this@LiquorsAdminActivity, 2)
-        firebaseRecyclerAdapter.startListening()
-        recyclerViewLiquor.adapter = firebaseRecyclerAdapter
+        sharedPreferences = this@LiquorsAdminActivity.getSharedPreferences("LICORES", MODE_PRIVATE)
+        var ordenar_en = sharedPreferences.getString("Ordenar", "Dos")
+
+        if (ordenar_en.equals("Dos")) {
+            recyclerViewLiquor.layoutManager = GridLayoutManager(this@LiquorsAdminActivity, 2)
+            firebaseRecyclerAdapter.startListening()
+            recyclerViewLiquor.adapter = firebaseRecyclerAdapter
+        } else if (ordenar_en.equals("Tres")) {
+            recyclerViewLiquor.layoutManager = GridLayoutManager(this@LiquorsAdminActivity, 3)
+            firebaseRecyclerAdapter.startListening()
+            recyclerViewLiquor.adapter = firebaseRecyclerAdapter
+        }
     }
 
     private fun DeletedImageLiquors(currentName: String, currentImage: String) {
@@ -167,7 +187,7 @@ class LiquorsAdminActivity : AppCompatActivity() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     for (ds in snapshot.children) {
                         var liquorsAxu: Liquor? = ds.getValue(Liquor::class.java)
-                        if(liquorsAxu?.image.equals(currentImage)) {
+                        if (liquorsAxu?.image.equals(currentImage)) {
                             ds.ref.removeValue()
                         }
                     }
@@ -244,10 +264,39 @@ class LiquorsAdminActivity : AppCompatActivity() {
             }
 
             R.id.viewItemBtn -> {
-                Toast.makeText(this, "Listar item", Toast.LENGTH_SHORT).show()
+                sortimage()
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun sortimage() {
+
+        var dos_columnas: Button
+        var tres_columnas: Button
+
+        dialogSort.setContentView(R.layout.dialog_sort)
+
+        dos_columnas = dialogSort.findViewById(R.id.dos_columnas)
+        tres_columnas = dialogSort.findViewById(R.id.tres_columnas)
+
+        dos_columnas.setOnClickListener(View.OnClickListener {
+            var editor: SharedPreferences.Editor = sharedPreferences.edit()
+            editor.putString("Ordenar", "Dos")
+            editor.apply()
+            recreate()
+            dialogSort.dismiss()
+        })
+
+        tres_columnas.setOnClickListener(View.OnClickListener {
+            var editor: SharedPreferences.Editor = sharedPreferences.edit()
+            editor.putString("Ordenar", "Tres")
+            editor.apply()
+            recreate()
+            dialogSort.dismiss()
+        })
+
+        dialogSort.show()
     }
 
     override fun onSupportNavigateUp(): Boolean {

@@ -1,6 +1,8 @@
 package co.com.sergio.catalogodistritodo.categoryAdmin.othersAdmin
 
+import android.app.Dialog
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +11,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
@@ -42,6 +45,9 @@ class OthersAdminActivity : AppCompatActivity() {
     lateinit var firebaseRecyclerAdapter: FirebaseRecyclerAdapter<Other, ViewHolderOthers>;
     lateinit var options: FirebaseRecyclerOptions<Other>
 
+    lateinit var dialogSort: Dialog
+    lateinit var sharedPreferences: SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_others_admin)
@@ -57,6 +63,8 @@ class OthersAdminActivity : AppCompatActivity() {
 
         mFirebaseDatabase = Firebase.database
         mReference = mFirebaseDatabase.getReference("OTROS")
+
+        dialogSort = Dialog(this@OthersAdminActivity)
 
         ListImageOthers();
 
@@ -128,9 +136,18 @@ class OthersAdminActivity : AppCompatActivity() {
                 }
             }
 
-        recyclerViewOther.layoutManager = GridLayoutManager(this@OthersAdminActivity, 2)
-        firebaseRecyclerAdapter.startListening()
-        recyclerViewOther.adapter = firebaseRecyclerAdapter
+        sharedPreferences = this@OthersAdminActivity.getSharedPreferences("LICORES", MODE_PRIVATE)
+        var ordenar_en = sharedPreferences.getString("Ordenar", "Dos")
+
+        if (ordenar_en.equals("Dos")) {
+            recyclerViewOther.layoutManager = GridLayoutManager(this@OthersAdminActivity, 2)
+            firebaseRecyclerAdapter.startListening()
+            recyclerViewOther.adapter = firebaseRecyclerAdapter
+        } else if (ordenar_en.equals("Tres")) {
+            recyclerViewOther.layoutManager = GridLayoutManager(this@OthersAdminActivity, 3)
+            firebaseRecyclerAdapter.startListening()
+            recyclerViewOther.adapter = firebaseRecyclerAdapter
+        }
     }
 
     private fun DeletedImageOthers(currentName: String, currentImage: String) {
@@ -232,13 +249,41 @@ class OthersAdminActivity : AppCompatActivity() {
                 finish()
             }
             R.id.viewItemBtn -> {
-                Toast.makeText(this, "Listar item", Toast.LENGTH_SHORT).show()
+                sortimage()
             }
         }
 
         return super.onOptionsItemSelected(item)
     }
 
+    private fun sortimage() {
+
+        var dos_columnas: Button
+        var tres_columnas: Button
+
+        dialogSort.setContentView(R.layout.dialog_sort)
+
+        dos_columnas = dialogSort.findViewById(R.id.dos_columnas)
+        tres_columnas = dialogSort.findViewById(R.id.tres_columnas)
+
+        dos_columnas.setOnClickListener(View.OnClickListener {
+            var editor: SharedPreferences.Editor = sharedPreferences.edit()
+            editor.putString("Ordenar", "Dos")
+            editor.apply()
+            recreate()
+            dialogSort.dismiss()
+        })
+
+        tres_columnas.setOnClickListener(View.OnClickListener {
+            var editor: SharedPreferences.Editor = sharedPreferences.edit()
+            editor.putString("Ordenar", "Tres")
+            editor.apply()
+            recreate()
+            dialogSort.dismiss()
+        })
+
+        dialogSort.show()
+    }
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()

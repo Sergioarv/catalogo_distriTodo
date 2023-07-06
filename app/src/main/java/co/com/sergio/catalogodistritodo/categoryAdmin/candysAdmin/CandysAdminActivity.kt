@@ -1,6 +1,8 @@
 package co.com.sergio.catalogodistritodo.categoryAdmin.candysAdmin
 
+import android.app.Dialog
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +11,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
@@ -42,6 +45,9 @@ class CandysAdminActivity : AppCompatActivity() {
     lateinit var firebaseRecyclerAdapter: FirebaseRecyclerAdapter<Candy, ViewHolderCandys>;
     lateinit var options: FirebaseRecyclerOptions<Candy>
 
+    lateinit var dialogSort: Dialog
+    lateinit var sharedPreferences: SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_candys_admin)
@@ -57,6 +63,8 @@ class CandysAdminActivity : AppCompatActivity() {
 
         mFirebaseDatabase = Firebase.database
         mReference = mFirebaseDatabase.getReference("DULCES")
+
+        dialogSort = Dialog(this@CandysAdminActivity)
 
         ListImageCandys();
 
@@ -128,9 +136,18 @@ class CandysAdminActivity : AppCompatActivity() {
                 }
             }
 
-        recyclerViewCandy.layoutManager = GridLayoutManager(this@CandysAdminActivity, 2)
-        firebaseRecyclerAdapter.startListening()
-        recyclerViewCandy.adapter = firebaseRecyclerAdapter
+        sharedPreferences = this@CandysAdminActivity.getSharedPreferences("LICORES", MODE_PRIVATE)
+        var ordenar_en = sharedPreferences.getString("Ordenar", "Dos")
+
+        if (ordenar_en.equals("Dos")) {
+            recyclerViewCandy.layoutManager = GridLayoutManager(this@CandysAdminActivity, 2)
+            firebaseRecyclerAdapter.startListening()
+            recyclerViewCandy.adapter = firebaseRecyclerAdapter
+        } else if (ordenar_en.equals("Tres")) {
+            recyclerViewCandy.layoutManager = GridLayoutManager(this@CandysAdminActivity, 3)
+            firebaseRecyclerAdapter.startListening()
+            recyclerViewCandy.adapter = firebaseRecyclerAdapter
+        }
     }
 
     private fun DeletedImageCandys(currentName: String, currentImage: String) {
@@ -232,11 +249,40 @@ class CandysAdminActivity : AppCompatActivity() {
                 finish()
             }
             R.id.viewItemBtn -> {
-                Toast.makeText(this, "Listar item", Toast.LENGTH_SHORT).show()
+                sortimage()
             }
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun sortimage() {
+
+        var dos_columnas: Button
+        var tres_columnas: Button
+
+        dialogSort.setContentView(R.layout.dialog_sort)
+
+        dos_columnas = dialogSort.findViewById(R.id.dos_columnas)
+        tres_columnas = dialogSort.findViewById(R.id.tres_columnas)
+
+        dos_columnas.setOnClickListener(View.OnClickListener {
+            var editor: SharedPreferences.Editor = sharedPreferences.edit()
+            editor.putString("Ordenar", "Dos")
+            editor.apply()
+            recreate()
+            dialogSort.dismiss()
+        })
+
+        tres_columnas.setOnClickListener(View.OnClickListener {
+            var editor: SharedPreferences.Editor = sharedPreferences.edit()
+            editor.putString("Ordenar", "Tres")
+            editor.apply()
+            recreate()
+            dialogSort.dismiss()
+        })
+
+        dialogSort.show()
     }
 
     override fun onSupportNavigateUp(): Boolean {

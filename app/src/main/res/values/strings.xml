@@ -98,5 +98,8 @@
     <string name="title_activity_drinks_admin">DrinksAdminActivity</string>
     <string name="title_activity_candys_admin">CandysAdminActivity</string>
     <string name="title_activity_others_admin">OthersAdminActivity</string>
+    <string name="dos_columnas">Dos Columnas</string>
+    <string name="tres_columnas">Tres columnas</string>
+    <string name="ordenar">Ordenar</string>
 
 </resources>
