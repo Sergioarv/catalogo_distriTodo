@@ -12,6 +12,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import co.com.sergio.catalogodistritodo.fragmentAdmin.AddAdminFragment
 import co.com.sergio.catalogodistritodo.fragmentAdmin.HomeAdminFragment
+import co.com.sergio.catalogodistritodo.fragmentAdmin.ProfileAdminFragment
 import co.com.sergio.catalogodistritodo.fragmentAdmin.RegisterAdminFragment
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.ktx.auth
@@ -63,17 +64,12 @@ class MainAdminActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                     .replace(R.id.fragment_content_a, HomeAdminFragment()).commit()
             }
 
-            R.id.registerAdmin -> {
+            R.id.profile_admin -> {
                 supportFragmentManager.beginTransaction()
                     .addToBackStack(this.localClassName)
-                    .replace(R.id.fragment_content_a, RegisterAdminFragment()).commit()
+                    .replace(R.id.fragment_content_a, ProfileAdminFragment()).commit()
             }
 
-            R.id.addAdmin -> {
-                supportFragmentManager.beginTransaction()
-                    .addToBackStack(this.localClassName)
-                    .replace(R.id.fragment_content_a, AddAdminFragment()).commit()
-            }
 
             R.id.logout -> {
                 cerrarSesion()

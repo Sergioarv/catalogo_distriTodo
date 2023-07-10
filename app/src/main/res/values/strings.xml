@@ -82,6 +82,22 @@
     <string name="last_name">Apellidos</string>
     <string name="register_btn">Registrar</string>
 
+    <!--    Perfil administrador-->
+    <string name="profile_admin_txt">Mi Perfil</string>
+    <string name="info_txt">Mi Información</string>
+    <string name="UID_profile_txt">Uid: </string>
+    <string name="UID_profile">--</string>
+    <string name="name_profile_txt">Nombres: </string>
+    <string name="name_profile">--</string>
+    <string name="last_name_profile_txt">Apellidos: </string>
+    <string name="last_name_profile">--</string>
+    <string name="email_profile_txt">Correo: </string>
+    <string name="email_profile">--</string>
+    <string name="password_profile_txt">Contraseña: </string>
+    <string name="password_profile">--</string>
+    <string name="update_password_profile">Actualizar Password</string>
+    <string name="update_data_profile">Actualizar Datos</string>
+
     <!--    Fragmento Home-->
     <string name="category">Elige una categoria</string>
     <string name="category_liquors">Licores</string>
@@ -101,5 +117,7 @@
     <string name="dos_columnas">Dos Columnas</string>
     <string name="tres_columnas">Tres columnas</string>
     <string name="ordenar">Ordenar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

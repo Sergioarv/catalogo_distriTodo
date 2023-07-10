@@ -16,14 +16,9 @@
             android:title="@string/register_admin" />
 
         <item
-            android:id="@+id/addAdmin"
-            android:icon="@drawable/add_ico"
-            android:title="@string/add_admin" />
-
-        <item
-            android:id="@+id/editAdmin"
-            android:icon="@drawable/edit_ico"
-            android:title="@string/edit_admin" />
+            android:id="@+id/profile_admin"
+            android:icon="@drawable/about_ico"
+            android:title="@string/profile_admin_txt" />
 
         <item
             android:id="@+id/logout"
