@@ -77,12 +77,6 @@ class ProfileAdminFragment : Fragment() {
 
         progressDialog = ProgressDialogF(this)
 
-//        permisos_almacenamiento = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-
-        image_profile.setOnClickListener(View.OnClickListener {
-            ElegirDeGaleria()
-        })
-
         db_administradores.child(user.uid).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
@@ -116,6 +110,14 @@ class ProfileAdminFragment : Fragment() {
 
         })
 
+        update_password_profile.setOnClickListener(View.OnClickListener {
+            startActivity(Intent(activity, ChangePassAdminActivity::class.java))
+            activity?.finish()
+        })
+
+        image_profile.setOnClickListener(View.OnClickListener {
+            ElegirDeGaleria()
+        })
 
         return view
     }
@@ -147,13 +149,10 @@ class ProfileAdminFragment : Fragment() {
             imageUri = data.data!!
 
             try {
-//                var bitMap: Bitmap = MediaStore.Images.Media.getBitmap(this.requireContext().contentResolver, imageUri)
-//                image_profile.setImageBitmap(bitMap)
-//                searchImage = true
                 ActualizarFotoDB(imageUri)
             } catch (e: Exception) {
 
-                Toast.makeText(activity, "1" + e.message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "" + e.message, Toast.LENGTH_SHORT).show()
                 progressDialog.isDismiss()
             }
         }
@@ -189,7 +188,7 @@ class ProfileAdminFragment : Fragment() {
                         .addOnFailureListener { e ->
                             Toast.makeText(
                                 activity,
-                                "2" + e.message,
+                                "" + e.message,
                                 Toast.LENGTH_SHORT
                             ).show()
                             progressDialog.isDismiss()
@@ -202,7 +201,7 @@ class ProfileAdminFragment : Fragment() {
             .addOnFailureListener { e ->
                 Toast.makeText(
                     activity,
-                    "3" + e.message,
+                    "" + e.message,
                     Toast.LENGTH_SHORT
                 ).show()
                 progressDialog.isDismiss()

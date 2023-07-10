@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Catalogo_distriTodo"
         tools:targetApi="31">
         <activity
+            android:name=".fragmentAdmin.ChangePassAdminActivity"
+            android:exported="false" />
+        <activity
             android:name=".categoryAdmin.othersAdmin.AddOthersActivity"
             android:exported="false" />
         <activity

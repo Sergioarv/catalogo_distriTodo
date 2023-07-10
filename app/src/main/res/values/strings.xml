@@ -98,6 +98,16 @@
     <string name="update_password_profile">Actualizar Password</string>
     <string name="update_data_profile">Actualizar Datos</string>
 
+<!--    Cambio de contraseña -->
+<string name="myDataProfile">Mis Credenciales</string>
+    <string name="currentPassTxt">Contraseña actual: </string>
+    <string name="currentPass">--</string>
+    <string name="currentPassEt"> Contraseña Actual </string>
+    <string name="newPassEt">Nueva contraseña</string>
+    <string name="changePassBtn">Cambiar contraseña</string>
+    <string name="goToHome">Ir inicio</string>
+    <string name="noteTxt">Si cambia la contraseña, se cerrará sesión automaticamente</string>
+
     <!--    Fragmento Home-->
     <string name="category">Elige una categoria</string>
     <string name="category_liquors">Licores</string>
