@@ -64,12 +64,17 @@ class MainAdminActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                     .replace(R.id.fragment_content_a, HomeAdminFragment()).commit()
             }
 
+            R.id.registerAdmin -> {
+                supportFragmentManager.beginTransaction()
+                    .addToBackStack(this.localClassName)
+                    .replace(R.id.fragment_content_a, RegisterAdminFragment()).commit()
+            }
+
             R.id.profile_admin -> {
                 supportFragmentManager.beginTransaction()
                     .addToBackStack(this.localClassName)
                     .replace(R.id.fragment_content_a, ProfileAdminFragment()).commit()
             }
-
 
             R.id.logout -> {
                 cerrarSesion()

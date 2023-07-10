@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@drawable/background"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".fragmentAdmin.ChangePassAdminActivity">
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -15,42 +14,88 @@
         android:padding="20dp">
 
         <TextView
-            android:text="@string/myDataProfile"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:textSize="25sp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/myDataProfile"
+            android:textColor="@color/black"
+            android:textSize="25sp" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="15dp">
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/currentPassTxt"
                 android:textColor="@color/black"
-                android:textSize="20sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:textSize="20sp" />
 
             <TextView
-                android:text="@string/currentPass"
-                android:textColor="@color/black"
-                android:textSize="20sp"
+                android:id="@+id/currentPass"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="@string/currentPass"
+                android:layout_marginStart="5dp"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-           app:passwordToggleEnabled="true"
-            android:layout_marginTop="15dp"
-            >
+            android:layout_marginTop="10dp"
+            app:passwordToggleEnabled="true">
+
+            <EditText
+                android:id="@+id/currentPassEt"
+                android:hint="@string/currentPassEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:autofillHints="no" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:passwordToggleEnabled="true">
+
+            <EditText
+                android:id="@+id/newPassEt"
+                android:hint="@string/newPassEt"
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+        
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_marginTop="10dp"
+            android:id="@+id/changePassBtn"
+            android:text="@string/changePassBtn"
+            android:textColor="@color/black"
+            android:background="@drawable/btn_customizable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_marginTop="10dp"
+            android:id="@+id/goToHome"
+            android:text="@string/goToHome"
+            android:textColor="@color/black"
+            android:background="@drawable/btn_customizable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
